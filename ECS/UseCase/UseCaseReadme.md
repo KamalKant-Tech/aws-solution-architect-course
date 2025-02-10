@@ -3,18 +3,19 @@
 ### Scaling Based on Average CPU Utilization of Running Tasks in a Service
 - <b> Q: How ECS service scale if scaling based on CPU utilization will check the cpu usage of each task</b>?
   - Yes, if you configure ECS Service Auto Scaling based on CPU utilization, it monitors the average CPU utilization across all tasks in the service, <b><i>not the CPU usage of individual tasks</i></b>. Here’s how it works:
+  
   - <b>How ECS Service Scaling Based on CPU Utilization Works</b>
-        1. Metric Used:
-            - ECS uses the ECSServiceAverageCPUUtilization metric from Amazon CloudWatch.
-            - This metric represents the average CPU utilization across all running tasks in the service.
-        2. Scaling Evaluation:
-            - The scaling policy evaluates the average CPU utilization compared to a defined threshold (e.g., scale out when CPU usage exceeds 70%).
-        3. Trigger for Scaling:
-            - When the average CPU utilization crosses the specified threshold
-             - ECS Service Auto Scaling increases or decreases the desired count of tasks to maintain the target utilization.
-        4. New Tasks and Resource Allocation:
-            - When new tasks are added, ECS attempts to distribute them across available EC2 instances or Fargate infrastructure.
-            - Similarly, tasks are stopped during scaling in, which reduces the average utilization.
+    1. Metric Used:
+        - ECS uses the ECSServiceAverageCPUUtilization metric from Amazon CloudWatch.
+        - This metric represents the average CPU utilization across all running tasks in the service.
+    2. Scaling Evaluation:
+        - The scaling policy evaluates the average CPU utilization compared to a defined threshold (e.g., scale out when CPU usage exceeds 70%).
+    3. Trigger for Scaling:
+        - When the average CPU utilization crosses the specified threshold
+            - ECS Service Auto Scaling increases or decreases the desired count of tasks to maintain the target utilization.
+    4. New Tasks and Resource Allocation:
+        - When new tasks are added, ECS attempts to distribute them across available EC2 instances or Fargate infrastructure.
+        - Similarly, tasks are stopped during scaling in, which reduces the average utilization.
         
     
 - <b>Example Scenario</b>:
